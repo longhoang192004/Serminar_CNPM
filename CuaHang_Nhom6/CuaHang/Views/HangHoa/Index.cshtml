@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CuaHang.Models.HangHoa>
+    @{
+        ViewBag.Title = "Danh sách Hàng hoá";
+        Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    }
+    <h1 class="text-center">Danh sách Hàng hoá</h1>
+    <div class="d-flex justify-content-between">
+        <a class="btn btn-primary" href="@Url.Action("Create", "HangHoa")">Tạo mới</a>
+
+        <form action="@Url.Action("Index", "HangHoa")" method="get" class="d-flex">
+            <select name="loaiHangId" class="form-select me-2">
+                <option value="">Tất cả loại hàng</option>
+                @foreach (var loai in ViewBag.LoaiHangList as SelectList)
+                {
+                    <option value="@loai.Value" @(loai.Value == Request["loaiHangId"] ? "selected" : "")>@loai.Text</option>
+                }
+            </select>
+            <input name="txtSearch" class="form-control me-2" type="search" placeholder="Tìm kiếm..."
+                   value="@Request["txtSearch"]" />
+            <button type="submit" class="btn btn-primary">Tìm</button>
+        </form>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+            @foreach (var item in Model)
+            {
+                <div class="col py-3">
+                    <div class="shadow p-3">
+                        <h4 style="height: 64px">
+                            <a class="text-decoration-none" href="/HangHoa/Details/@item.MaHH">@item.TenHH</a>
+                        </h4>
+                        <h6 class="text-secondary">@item.LoaiHang.TenLH</h6>
+                        <div style="height: 64px">
+                            Giá:
+                            <span class="text-danger fw-bold">@item.Gia.Value.ToString("N0")đ/@item.DonVi</span>
+                        </div>
+                        <div>
+                            Còn lại:
+                            <span class="text-danger fw-bold">@item.SLTon @item.DonVi</span>
+                        </div>
+
+                        <a class="btn text-primary" href="/HangHoa/GioHang/@item.MaHH">Mua</a>|
+                        <a class="btn text-primary" href="/HangHoa/Edit/@item.MaHH">Sửa</a>|
+                        <a class="btn text-primary" href="/HangHoa/Delete/@item.MaHH">Xoá</a>
+
+                    </div>
+                </div>
+            }
+    </div>

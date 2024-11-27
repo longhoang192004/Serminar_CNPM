@@ -1,0 +1,50 @@
+﻿@model CuaHang.Models.HangHoa
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2 class="text-center">Chi tiết Hàng hoá</h2>
+
+<table style="max-width: 500px" class="table m-auto">
+    <tr>
+        <td>Mã hàng hoá</td>
+        <th>@Model.MaHH</th>
+    </tr>
+
+    <tr>
+        <td>Tên hàng hoá</td>
+        <th>@Model.TenHH</th>
+    </tr>
+
+    <tr>
+        <td>Tên loại hàng</td>
+        <th>@Model.LoaiHang.TenLH</th>
+    </tr>
+
+    <tr>
+        <td>Giá</td>
+        <th>@Model.Gia.Value.ToString("N0")đ</th>
+    </tr>
+
+    <tr>
+        <td>Số lượng tồn</td>
+        <th>@Model.SLTon</th>
+    </tr>
+
+    <tr>
+        <td>Đơn vị</td>
+        <th>@Model.DonVi</th>
+    </tr>
+
+    <tr>
+        <td>
+            <a class="btn text-primary" href="/HangHoa/Edit/@Model.MaHH">Sửa</a>            
+        </td>
+
+        <td>
+            <a class="btn text-primary" href="/HangHoa/Index">Quay lại</a>
+        </td>
+    </tr>
+</table>

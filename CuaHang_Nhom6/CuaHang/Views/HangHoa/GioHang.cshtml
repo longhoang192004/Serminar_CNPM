@@ -1,0 +1,76 @@
+﻿@model CuaHang.Models.HangHoa
+
+@{
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2 class="text-center">Thanh toán</h2>
+
+<table style="max-width: 500px" class="table m-auto">
+    <tr>
+        <td>Mã hàng hoá</td>
+        <th>@Model.MaHH</th>
+    </tr>
+
+    <tr>
+        <td>Tên hàng hoá</td>
+        <th>@Model.TenHH</th>
+    </tr>
+
+    <tr>
+        <td>Tên loại hàng</td>
+        <th>@Model.LoaiHang.TenLH</th>
+    </tr>
+
+    <tr>
+        <td>Giá</td>
+        <th id="unitPrice">@Model.Gia.Value.ToString("N0")đ</th>
+    </tr>
+
+    <tr>
+        <td>Đơn vị</td>
+        <th>@Model.DonVi</th>
+    </tr>
+
+    <tr>
+        <td>Số lượng</td>
+        <th>
+            <input id="quantity" class="form-control me-2" type="number" placeholder="Nhập số lượng mua" min="1" value="1" />
+        </th>
+    </tr>
+
+    <tr>
+        <td>Tổng tiền</td>
+        <th>
+            <input id="totalPrice" class="form-control me-2" type="text" readonly />
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            <a class="btn text-primary" href="/HangHoa/Index">Mua</a>
+        </td>
+
+        <td>
+            <a class="btn text-primary" href="/HangHoa/Index">Quay lại</a>
+        </td>
+    </tr>
+</table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const unitPrice = @Model.Gia;
+        const quantityInput = document.getElementById("quantity");
+        const totalPriceInput = document.getElementById("totalPrice");
+
+        function calculateTotal() {
+            const quantity = parseInt(quantityInput.value) || 0;
+            const total = unitPrice * quantity;
+            totalPriceInput.value = total.toLocaleString() + "đ";
+        }
+
+        calculateTotal();
+        quantityInput.addEventListener("input", calculateTotal);
+    });
+</script>

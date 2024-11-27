@@ -1,0 +1,52 @@
+﻿@model CuaHang.Models.HangHoa
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2 class="text-center">Xoá bỏ Hàng hoá</h2>
+
+<table style="max-width: 500px" class="table m-auto">
+    <tr>
+        <td>Mã hàng hoá</td>
+        <th>@Model.MaHH</th>
+    </tr>
+
+    <tr>
+        <td>Tên hàng hoá</td>
+        <th>@Model.TenHH</th>
+    </tr>
+
+    <tr>
+        <td>Tên loại hàng</td>
+        <th>@Model.LoaiHang.TenLH</th>
+    </tr>
+
+    <tr>
+        <td>Giá</td>
+        <th>@Model.Gia.Value.ToString("N0")đ</th>
+    </tr>
+
+    <tr>
+        <td>Số lượng tồn</td>
+        <th>@Model.SLTon</th>
+    </tr>
+
+    <tr>
+        <td>Đơn vị</td>
+        <th>@Model.DonVi</th>
+    </tr>
+
+    <tr>
+        <td>
+            <form action="/HangHoa/ConfirmDelete/@Model.MaHH" method="post">
+                <button class="btn text-danger" type="submit">Xác nhận xoá bỏ</button>
+            </form>            
+        </td>
+
+        <td>
+            <a class="btn text-primary" href="/HangHoa/Index">Quay lại</a>
+        </td>
+    </tr>
+</table>
