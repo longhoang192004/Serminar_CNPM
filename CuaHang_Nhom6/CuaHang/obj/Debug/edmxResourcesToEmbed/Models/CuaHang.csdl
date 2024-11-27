@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CuaHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="HangHoa">
+    <Key>
+      <PropertyRef Name="MaHH" />
+    </Key>
+    <Property Name="MaHH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenHH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MaLH" Type="Int32" />
+    <Property Name="Gia" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="SLTon" Type="Int32" />
+    <Property Name="DonVi" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LoaiHang" Relationship="Self.FK__HangHoa__MaLH__398D8EEE" FromRole="HangHoa" ToRole="LoaiHang" />
+  </EntityType>
+  <EntityType Name="LoaiHang">
+    <Key>
+      <PropertyRef Name="MaLH" />
+    </Key>
+    <Property Name="MaLH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HangHoas" Relationship="Self.FK__HangHoa__MaLH__398D8EEE" FromRole="LoaiHang" ToRole="HangHoa" />
+  </EntityType>
+  <Association Name="FK__HangHoa__MaLH__398D8EEE">
+    <End Role="LoaiHang" Type="Self.LoaiHang" Multiplicity="0..1" />
+    <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiHang">
+        <PropertyRef Name="MaLH" />
+      </Principal>
+      <Dependent Role="HangHoa">
+        <PropertyRef Name="MaLH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CuaHangEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="HangHoas" EntityType="Self.HangHoa" />
+    <EntitySet Name="LoaiHangs" EntityType="Self.LoaiHang" />
+    <AssociationSet Name="FK__HangHoa__MaLH__398D8EEE" Association="Self.FK__HangHoa__MaLH__398D8EEE">
+      <End Role="LoaiHang" EntitySet="LoaiHangs" />
+      <End Role="HangHoa" EntitySet="HangHoas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
