@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CuaHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HangHoa">
+          <Key>
+            <PropertyRef Name="MaHH" />
+          </Key>
+          <Property Name="MaHH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenHH" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaLH" Type="int" />
+          <Property Name="Gia" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="SLTon" Type="int" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="LoaiHang">
+          <Key>
+            <PropertyRef Name="MaLH" />
+          </Key>
+          <Property Name="MaLH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLH" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__HangHoa__MaLH__398D8EEE">
+          <End Role="LoaiHang" Type="Self.LoaiHang" Multiplicity="0..1" />
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiHang">
+              <PropertyRef Name="MaLH" />
+            </Principal>
+            <Dependent Role="HangHoa">
+              <PropertyRef Name="MaLH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CuaHangModelStoreContainer">
+          <EntitySet Name="HangHoa" EntityType="Self.HangHoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiHang" EntityType="Self.LoaiHang" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__HangHoa__MaLH__398D8EEE" Association="Self.FK__HangHoa__MaLH__398D8EEE">
+            <End Role="LoaiHang" EntitySet="LoaiHang" />
+            <End Role="HangHoa" EntitySet="HangHoa" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CuaHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HangHoa">
+          <Key>
+            <PropertyRef Name="MaHH" />
+          </Key>
+          <Property Name="MaHH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenHH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaLH" Type="Int32" />
+          <Property Name="Gia" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="SLTon" Type="Int32" />
+          <Property Name="DonVi" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoaiHang" Relationship="Self.FK__HangHoa__MaLH__398D8EEE" FromRole="HangHoa" ToRole="LoaiHang" />
+        </EntityType>
+        <EntityType Name="LoaiHang">
+          <Key>
+            <PropertyRef Name="MaLH" />
+          </Key>
+          <Property Name="MaLH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HangHoas" Relationship="Self.FK__HangHoa__MaLH__398D8EEE" FromRole="LoaiHang" ToRole="HangHoa" />
+        </EntityType>
+        <Association Name="FK__HangHoa__MaLH__398D8EEE">
+          <End Role="LoaiHang" Type="Self.LoaiHang" Multiplicity="0..1" />
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiHang">
+              <PropertyRef Name="MaLH" />
+            </Principal>
+            <Dependent Role="HangHoa">
+              <PropertyRef Name="MaLH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CuaHangEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HangHoas" EntityType="Self.HangHoa" />
+          <EntitySet Name="LoaiHangs" EntityType="Self.LoaiHang" />
+          <AssociationSet Name="FK__HangHoa__MaLH__398D8EEE" Association="Self.FK__HangHoa__MaLH__398D8EEE">
+            <End Role="LoaiHang" EntitySet="LoaiHangs" />
+            <End Role="HangHoa" EntitySet="HangHoas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CuaHangModelStoreContainer" CdmEntityContainer="CuaHangEntities1">
+          <EntitySetMapping Name="HangHoas">
+            <EntityTypeMapping TypeName="CuaHangModel.HangHoa">
+              <MappingFragment StoreEntitySet="HangHoa">
+                <ScalarProperty Name="MaHH" ColumnName="MaHH" />
+                <ScalarProperty Name="TenHH" ColumnName="TenHH" />
+                <ScalarProperty Name="MaLH" ColumnName="MaLH" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="SLTon" ColumnName="SLTon" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiHangs">
+            <EntityTypeMapping TypeName="CuaHangModel.LoaiHang">
+              <MappingFragment StoreEntitySet="LoaiHang">
+                <ScalarProperty Name="MaLH" ColumnName="MaLH" />
+                <ScalarProperty Name="TenLH" ColumnName="TenLH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
