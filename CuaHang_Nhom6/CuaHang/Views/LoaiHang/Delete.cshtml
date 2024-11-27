@@ -1,0 +1,33 @@
+﻿@model CuaHang.Models.LoaiHang
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2 class="text-center">Xoá bỏ Loại hàng</h2>
+<div class="text-center text-danger">@TempData["ErrorMessage"]</div>
+
+<table style="max-width: 500px" class="table m-auto">
+    <tr>
+        <td>Mã Loại hàng</td>
+        <th>@Model.MaLH</th>
+    </tr>
+
+    <tr>
+        <td>Tên Loại hàng</td>
+        <th>@Model.TenLH</th>
+    </tr>
+
+    <tr>
+        <td>
+            <form action="/LoaiHang/ConfirmDelete/@Model.MaLH" method="post">
+                <button class="btn text-danger" type="submit">Xác nhận xoá bỏ</button>
+            </form>            
+        </td>
+
+        <td>
+            <a class="btn text-primary" href="/LoaiHang/Index">Quay lại</a>
+        </td>
+    </tr>
+</table>

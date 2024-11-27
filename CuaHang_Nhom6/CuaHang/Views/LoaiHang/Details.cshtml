@@ -1,0 +1,30 @@
+﻿@model CuaHang.Models.LoaiHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2 class="text-center">Chi tiết Loại hàng</h2>
+
+<table style="max-width: 500px" class="table m-auto">
+    <tr>
+        <td>Mã Loại hàng</td>
+        <th>@Model.MaLH</th>
+    </tr>
+
+    <tr>
+        <td>Tên Loại hàng</td>
+        <th>@Model.TenLH</th>
+    </tr>
+
+    <tr>
+        <td>
+            <a class="btn text-primary" href="/LoaiHang/Edit/@Model.MaLH">Sửa</a>            
+        </td>
+
+        <td>
+            <a class="btn text-primary" href="/LoaiHang/Index">Quay lại</a>
+        </td>
+    </tr>
+</table>

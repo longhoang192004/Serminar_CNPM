@@ -1,0 +1,18 @@
+﻿@model CuaHang.Models.LoaiHang
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2 class="text-center">Tạo mới Loại Hàng</h2>
+
+<form style="max-width: 500px" class="was-validated m-auto" asp-action="Create" method="post">
+    <div class="form-floating my-3">
+        @Html.TextBoxFor(model => model.TenLH, new { @class = "form-control", placeholder = "", required = "required" })
+        <label for="TenLH">Tên loại hàng</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-25">Tạo</button> |
+    <a class="btn text-primary" href="/LoaiHang/Index">Quay lại</a>
+</form>
